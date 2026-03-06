@@ -81,7 +81,7 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
                 </div>
               </>
             ) : (
-              <span>Upload Logo</span>
+              <span className="text-xs lowercase">Upload Logo</span>
             )}
           </label>
         ) : logoPreview ? (
@@ -96,8 +96,8 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
         ) : sponsor.logo ? (
           <div className="text-foreground z-10">{sponsor.logo}</div>
         ) : (
-          <div className="border-border/60 text-muted-foreground/60 group-hover:border-border group-hover:text-muted-foreground/80 z-10 flex h-48 w-full items-center justify-center rounded-lg border border-dashed text-sm transition-colors sm:h-64">
-            {sponsor.placeholderText || "Your Image Here"}
+          <div className="border-border/60 text-muted-foreground/60 group-hover:border-border group-hover:text-muted-foreground/80 z-10 flex h-48 w-full items-center justify-center rounded-lg border border-dashed text-sm lowercase transition-colors sm:h-64">
+            {sponsor.placeholderText || "your image here"}
           </div>
         )}
       </div>
@@ -109,19 +109,19 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="border-primary/50 focus:border-primary placeholder:text-muted-foreground/50 max-w-full border-b bg-transparent py-1 text-2xl font-semibold tracking-tight outline-none"
-              placeholder="Company Name"
+              className="border-primary/50 focus:border-primary placeholder:text-muted-foreground/50 max-w-full border-b bg-transparent py-1 text-2xl font-semibold tracking-tight lowercase outline-none"
+              placeholder="company name"
               autoFocus
             />
           ) : (
-            <h3 className="text-2xl font-semibold tracking-tight">
-              {name || "Company Name"}
+            <h3 className="text-2xl font-semibold tracking-tight lowercase">
+              {name || "company name"}
             </h3>
           )}
 
           {sponsor.badge && (
             <span
-              className={`rounded-md border px-2.5 py-1 text-xs font-medium whitespace-nowrap ${
+              className={`rounded-md border px-2.5 py-1 text-[10px] font-medium whitespace-nowrap lowercase ${
                 sponsor.badgeColor === "success"
                   ? "border-green-500/20 bg-green-500/10 text-green-500"
                   : "bg-muted text-muted-foreground border-border/50"
@@ -136,13 +136,12 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="text-muted-foreground border-primary/50 focus:border-primary placeholder:text-muted-foreground/50 mb-8 h-32 w-full resize-none rounded-md border bg-transparent p-3 text-[15px] leading-relaxed outline-none"
-            placeholder="Write a short description about how your company supports developers or open source..."
+            className="text-muted-foreground border-primary/50 focus:border-primary placeholder:text-muted-foreground/50 mb-8 h-32 w-full resize-none rounded-md border bg-transparent p-3 text-[15px] leading-relaxed lowercase outline-none"
+            placeholder="write a short description about how your company supports developers or open source..."
           />
         ) : (
-          <p className="text-muted-foreground mb-8 line-clamp-4 max-w-md text-[15px] leading-relaxed">
-            {description ||
-              "Add a description of your company and how you support the community."}
+          <p className="text-muted-foreground mb-8 line-clamp-4 max-w-md text-[15px] leading-relaxed lowercase">
+            {description}
           </p>
         )}
 
@@ -154,7 +153,7 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <SecondaryButton className="text-sm">
+                <SecondaryButton className="text-sm lowercase">
                   {sponsor.action.label}
                 </SecondaryButton>
               </Link>
@@ -163,10 +162,10 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
 
           {isEditing && (
             <SecondaryButton
-              className="border-primary/50 text-primary hover:bg-primary/10 ml-auto text-sm"
+              className="border-primary/50 text-primary hover:bg-primary/10 ml-auto text-sm lowercase"
               onClick={() => setIsEditing(false)}
             >
-              Done Editing
+              done editing
             </SecondaryButton>
           )}
         </div>
@@ -178,11 +177,11 @@ const SponsorCard = ({ sponsor }: { sponsor: SponsorProps }) => {
 export default function BackedBy() {
   const sponsors: SponsorProps[] = [
     {
-      name: "Vercel",
-      badge: "Open Source Program",
+      name: "vercel",
+      badge: "open source program",
       badgeColor: "default",
       description:
-        "Providing the robust infrastructure that keeps Its Hover fast, reliable, and accessible to creators worldwide. Vercel enables seamless deployment with zero configuration.",
+        "providing the robust infrastructure that keeps its hover fast, reliable, and accessible to creators worldwide. vercel enables seamless deployment with zero configuration.",
       logo: (
         <svg
           fill="currentColor"
@@ -196,13 +195,13 @@ export default function BackedBy() {
       ),
     },
     {
-      name: "Your Company Here",
+      name: "your company here",
       description:
-        "Join us in building the future of interactive icons. Sponsor Its Hover to get your brand featured here, reaching thousands of developers and designers.",
-      placeholderText: "Your Logo Here",
+        "join us in building the future of interactive icons. sponsor its hover to get your brand featured here, reaching thousands of developers and designers.",
+      placeholderText: "your logo here",
       editable: true,
       action: {
-        label: "Contact Us",
+        label: "contact us",
         href: "https://x.com/abhijitwt",
       },
     },
@@ -217,35 +216,26 @@ export default function BackedBy() {
         viewport={{ once: true }}
         className="mb-16 flex flex-col items-center space-y-4 text-center"
       >
-        <h2
-          className="font-serif text-3xl md:text-4xl"
-          style={{ fontFamily: "Georgia, serif" }}
-        >
-          Backed By
+        <h2 className="text-4xl font-bold tracking-tight lowercase md:text-5xl">
+          backed by
         </h2>
-        <p className="text-muted-foreground max-w-2xl px-4">
-          Its Hover is supported by incredible tools and companies.
+        <p className="text-muted-foreground max-w-2xl px-4 lowercase">
+          its hover is supported by incredible tools and companies.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          <SponsorCard sponsor={sponsors[0]} />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <SponsorCard sponsor={sponsors[1]} />
-        </motion.div>
+        {sponsors.map((sponsor, index) => (
+          <motion.div
+            key={sponsor.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+            viewport={{ once: true }}
+          >
+            <SponsorCard sponsor={sponsor} />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

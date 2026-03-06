@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { LINKS, SPONSOR } from "@/constants";
+import { LINKS, SPONSOR, TOKEN } from "@/constants";
 import GithubIcon from "@/icons/github-icon";
 import TwitterXIcon from "@/icons/twitter-x-icon";
 import HeartIcon from "@/icons/heart-icon";
@@ -24,6 +24,8 @@ import GearIcon from "@/icons/gear-icon";
 import MessageCircleIcon from "@/icons/message-circle-icon";
 import SendIcon from "@/icons/send-icon";
 import CheckedIcon from "@/icons/checked-icon";
+import BrandBagsFmIcon from "@/icons/brand-bags-fm-icon";
+import type { AnimatedIconHandle } from "@/icons/types";
 import RequestIconModal from "./request-icon-modal";
 
 const CryptoAddress = ({
@@ -79,6 +81,7 @@ const Footer = () => {
   ];
 
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const bagsIconRef = useRef<AnimatedIconHandle>(null);
 
   return (
     <motion.footer
@@ -142,6 +145,7 @@ const Footer = () => {
               </Link>
               <div className="text-muted-foreground space-y-2 text-sm">
                 <p className="text-foreground font-medium">Crypto</p>
+                <CryptoAddress label="CA" address={TOKEN.CA} />
                 <CryptoAddress label="BTC" address={SPONSOR.btc} />
                 <CryptoAddress label="ETH" address={SPONSOR.eth} />
                 <CryptoAddress label="SOL" address={SPONSOR.sol} />
@@ -213,6 +217,17 @@ const Footer = () => {
                 aria-label="Twitter"
               >
                 <TwitterXIcon size={20} />
+              </Link>
+              <Link
+                href={LINKS.BAGS}
+                target="_blank"
+                rel="noreferrer"
+                onMouseEnter={() => bagsIconRef.current?.startAnimation()}
+                onMouseLeave={() => bagsIconRef.current?.stopAnimation()}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Bags"
+              >
+                <BrandBagsFmIcon ref={bagsIconRef} size={20} />
               </Link>
             </div>
           </div>

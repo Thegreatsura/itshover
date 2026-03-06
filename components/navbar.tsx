@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { ModeToggle } from "./ui/toggle-button";
 import { Kbd } from "@/components/ui/kbd";
@@ -12,14 +12,35 @@ import { LINKS } from "@/constants";
 import LayersIcon from "@/icons/layers-icon";
 import AlignCenterIcon from "@/icons/align-center-icon";
 import XIcon from "@/icons/x-icon";
-import { isMac } from "@/lib/utils";
+import { isMac, cn } from "@/lib/utils";
+import { TOKEN } from "@/constants";
+import BrandBagsFmIcon from "@/icons/brand-bags-fm-icon";
+import CopyIcon from "@/icons/copy-icon";
+import ExternalLinkIcon from "@/icons/external-link-icon";
+import ChartLineIcon from "@/icons/chart-line-icon";
+import CheckedIcon from "@/icons/checked-icon";
+import { AnimatePresence, motion } from "motion/react";
+import type { AnimatedIconHandle } from "@/icons/types";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [bagsDropdownOpen, setBagsDropdownOpen] = useState(false);
+  const [copiedCA, setCopiedCA] = useState(false);
+  const bagsIconRef = useRef<AnimatedIconHandle>(null);
+  const mobileBagsIconRef = useRef<AnimatedIconHandle>(null);
+  const copyIconRef = useRef<AnimatedIconHandle>(null);
+  const bagsLinkIconRef = useRef<AnimatedIconHandle>(null);
+  const dexIconRef = useRef<AnimatedIconHandle>(null);
   const { toggle: toggleCommandMenu } = useCommandMenu();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleCopyCA = async () => {
+    await navigator.clipboard.writeText(TOKEN.CA);
+    setCopiedCA(true);
+    setTimeout(() => setCopiedCA(false), 2000);
   };
 
   return (
@@ -62,17 +83,95 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden flex-1 items-center justify-end gap-2 sm:gap-2 md:flex md:justify-end">
+          <div className="relative mr-1">
+            <button
+              onClick={() => setBagsDropdownOpen(!bagsDropdownOpen)}
+              onMouseEnter={() => bagsIconRef.current?.startAnimation()}
+              onMouseLeave={() => bagsIconRef.current?.stopAnimation()}
+              onBlur={() => setTimeout(() => setBagsDropdownOpen(false), 200)}
+              className={cn(
+                "hover:text-foreground/80 text-foreground/60 flex items-center justify-center p-2 text-sm font-medium transition-colors",
+                bagsDropdownOpen && "text-foreground",
+              )}
+            >
+              <BrandBagsFmIcon ref={bagsIconRef} size={20} />
+            </button>
+
+            <AnimatePresence>
+              {bagsDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  className="bg-background absolute top-full right-0 z-50 mt-2 w-52 overflow-hidden rounded-xl border p-1 shadow-xl"
+                >
+                  <button
+                    onClick={handleCopyCA}
+                    onMouseEnter={() => copyIconRef.current?.startAnimation()}
+                    onMouseLeave={() => copyIconRef.current?.stopAnimation()}
+                    className="hover:bg-muted flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors"
+                  >
+                    <CopyIcon
+                      ref={copyIconRef}
+                      size={14}
+                      className="text-muted-foreground"
+                    />
+                    <span>Copy CA</span>
+                    {copiedCA && (
+                      <CheckedIcon
+                        size={12}
+                        className="ml-auto text-green-500"
+                      />
+                    )}
+                  </button>
+                  <Link
+                    href={LINKS.BAGS}
+                    target="_blank"
+                    onMouseEnter={() =>
+                      bagsLinkIconRef.current?.startAnimation()
+                    }
+                    onMouseLeave={() =>
+                      bagsLinkIconRef.current?.stopAnimation()
+                    }
+                    className="hover:bg-muted flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors"
+                  >
+                    <ExternalLinkIcon
+                      ref={bagsLinkIconRef}
+                      size={14}
+                      className="text-muted-foreground"
+                    />
+                    <span>View on Bags</span>
+                  </Link>
+                  <Link
+                    href={LINKS.DEXSCREENER}
+                    target="_blank"
+                    onMouseEnter={() => dexIconRef.current?.startAnimation()}
+                    onMouseLeave={() => dexIconRef.current?.stopAnimation()}
+                    className="hover:bg-muted flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors"
+                  >
+                    <ChartLineIcon
+                      ref={dexIconRef}
+                      size={14}
+                      className="text-muted-foreground"
+                    />
+                    <span>DexScreener</span>
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <GithubStars />
           <Link
             target="__blank"
-            className="hover:text-foreground/80 text-foreground/60 mr-3 flex items-center justify-center text-sm font-medium transition-colors"
+            className="hover:text-foreground/80 text-foreground/60 mr-1 flex items-center justify-center text-sm font-medium transition-colors"
             href={LINKS.TWITTER}
           >
             <TwitterXIcon className="h-4 w-4" />
           </Link>
           <Link
             target="__blank"
-            className="hover:text-foreground/80 text-foreground/60 flex items-center justify-center text-sm font-medium transition-colors"
+            className="hover:text-foreground/80 text-foreground/60 mr-1 flex items-center justify-center text-sm font-medium transition-colors"
             href={LINKS.GITHUB}
           >
             <GithubIcon size={18} />
@@ -90,10 +189,8 @@ const Navbar = () => {
             <input
               type="text"
               readOnly
-              placeholder="Search Components..."
-              onClick={toggleCommandMenu}
-              onFocus={toggleCommandMenu}
-              className="hover:text-foreground/80 text-foreground/60 w-32 cursor-pointer bg-transparent pr-4 pl-2 text-xs font-medium transition-colors outline-none sm:text-sm xl:w-40"
+              placeholder="Search..."
+              className="hover:text-foreground/80 text-foreground/60 w-24 cursor-pointer bg-transparent pr-4 pl-2 text-xs font-medium transition-colors outline-none sm:text-sm xl:w-32"
             />
             <Kbd>
               <span className="text-xs">{isMac() ? "⌘" : "Ctrl+"}</span>K
@@ -156,6 +253,20 @@ const Navbar = () => {
             <div className="flex items-center justify-between border-t border-white/10 pt-4">
               <div className="flex items-center gap-4">
                 <Link
+                  href={LINKS.BAGS}
+                  target="_blank"
+                  onMouseEnter={() =>
+                    mobileBagsIconRef.current?.startAnimation()
+                  }
+                  onMouseLeave={() =>
+                    mobileBagsIconRef.current?.stopAnimation()
+                  }
+                  className="hover:text-foreground/80 text-foreground/60 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <BrandBagsFmIcon ref={mobileBagsIconRef} size={20} />
+                </Link>
+                <Link
                   target="_blank"
                   className="hover:text-foreground/80 text-foreground/60 text-sm font-medium transition-colors"
                   href={LINKS.GITHUB}
@@ -171,6 +282,20 @@ const Navbar = () => {
                 >
                   <TwitterXIcon size={20} />
                 </Link>
+                <div className="mx-1 h-4 w-px bg-white/10" />
+                <button
+                  onClick={handleCopyCA}
+                  className="hover:text-foreground/80 text-foreground/60 flex items-center gap-2 text-xs font-medium transition-colors"
+                >
+                  <span className="font-mono">
+                    {TOKEN.CA.slice(0, 4)}...{TOKEN.CA.slice(-4)}
+                  </span>
+                  {copiedCA ? (
+                    <CheckedIcon size={14} className="text-green-500" />
+                  ) : (
+                    <CopyIcon size={14} />
+                  )}
+                </button>
               </div>
               <GithubStars />
             </div>

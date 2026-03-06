@@ -1,13 +1,14 @@
-// DO NOT CHANGE THIS FILE
+export const TOKEN = {
+  CA: "AUsbqN5AddEhVsPDaBLWhXNWwubdm8ArF7SZfyUfBAGS",
+} as const;
+
 export const LINKS = {
   TWITTER: "https://x.com/itshoverr",
   GITHUB: "https://github.com/itshover/itshover",
   SITE_URL: "https://itshover.com",
   CREATOR: "https://x.com/abhijitwt",
-} as const;
-
-export const TOKEN = {
-  CA: "AUsbqN5AddEhVsPDaBLWhXNWwubdm8ArF7SZfyUfBAGS",
+  BAGS: `https://bags.fm/AUsbqN5AddEhVsPDaBLWhXNWwubdm8ArF7SZfyUfBAGS`,
+  DEXSCREENER: `https://dexscreener.com/solana/${TOKEN.CA}`,
 } as const;
 
 export const SPONSOR = {
