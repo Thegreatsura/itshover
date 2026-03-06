@@ -156,8 +156,8 @@ export default function VideoCard({
             <div
               className={`h-1.5 w-1.5 rounded-full ${isPlaying ? "bg-primary animate-pulse" : "bg-white/20"}`}
             />
-            <span className="text-[10px] tracking-tighter text-white/40 uppercase">
-              {isPlaying ? "Playing" : "Paused"}
+            <span className="text-[10px] tracking-tighter text-white/40 lowercase">
+              {isPlaying ? "playing" : "paused"}
             </span>
           </div>
         </div>

@@ -7,14 +7,14 @@ export default function TestimonialSection() {
 
   const featuredVideo = {
     src: "https://res.cloudinary.com/dtw3o2jxc/video/upload/v1772367229/manu-paaji-itshover-yt_uiqsor.mp4",
-    title: "Its Hover Feature by Manu Arora",
+    title: "its hover feature by manu arora",
     aspectRatio: "video" as const,
     delay: 0.2,
   };
 
   const featuredReel = {
     src: "https://res.cloudinary.com/dtw3o2jxc/video/upload/v1772367229/manu-paaji-itshover-reel_q854ta.mp4",
-    title: "Its Hover Reel Showcase",
+    title: "its hover reel showcase",
     aspectRatio: "reel" as const,
     delay: 0.1,
   };
@@ -32,14 +32,11 @@ export default function TestimonialSection() {
           viewport={{ once: true }}
           className="mb-20 flex flex-col items-center space-y-4 text-center"
         >
-          <div className="border-primary/20 bg-primary/5 text-primary rounded-full border px-4 py-1.5 text-xs font-medium tracking-wider uppercase">
-            Community Love
+          <div className="border-primary/20 bg-primary/5 text-primary rounded-full border px-4 py-1.5 text-xs font-medium tracking-wider lowercase">
+            community love
           </div>
-          <h2
-            className="font-serif text-5xl md:text-6xl"
-            style={{ fontFamily: "Georgia, serif" }}
-          >
-            Loved by Creators
+          <h2 className="text-4xl font-bold tracking-tight lowercase md:text-5xl">
+            loved by creators
           </h2>
         </motion.div>
 
