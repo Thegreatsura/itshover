@@ -6,6 +6,7 @@ import path from "path";
 import TakeuforwardNavbar from "@/components/examples/takeuforward-navbar";
 import NotionSidebar from "@/components/examples/notion-sidebar";
 import Dock from "@/components/examples/dock";
+import ProfileDropdown from "@/components/examples/profile-dropdown";
 
 // Define the registry of examples
 // Add new examples to this array
@@ -77,6 +78,16 @@ const EXAMPLE_REGISTRY = [
       "An animated dock navigation component inspired by macOS. Features smooth hover interactions and individual icon animations for fast, compact navigation.",
     tags: ["UI", "Animation", "Framer Motion", "Interactive"],
     fullWidth: true,
+  },
+  {
+    componentName: "Profile Dropdown",
+    slug: "profile-dropdown",
+    createdBy: "https://github.com/prathik018",
+    filePath: "components/examples/profile-dropdown.tsx",
+    component: ProfileDropdown,
+    description:
+      "A sleek profile dropdown menu with animated icons, user information, and a theme toggle. ",
+    tags: ["Dropdown", "Profile", "Navigation", "Framer Motion", "UI"],
   },
 ];
 
