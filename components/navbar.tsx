@@ -237,15 +237,6 @@ const Navbar = () => {
             >
               Example
             </Link>
-            <Link
-              href={LINKS.BAGS}
-              target="_blank"
-              className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2 text-sm font-bold text-emerald-500 transition-colors hover:bg-emerald-500/10"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <BrandBagsFmIcon size={18} />
-              <span>Join Bags</span>
-            </Link>
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
