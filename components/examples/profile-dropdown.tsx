@@ -81,6 +81,8 @@ const DropdownItem = ({
         className="group hover:bg-muted flex w-full items-center rounded-xl px-4 py-3 transition-all"
         onMouseEnter={startAnimation}
         onMouseLeave={stopAnimation}
+        onFocus={startAnimation}
+        onBlur={stopAnimation}
       >
         {content}
       </div>
