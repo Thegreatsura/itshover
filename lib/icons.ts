@@ -316,6 +316,10 @@ export const ICONS = [
     path: "/icons/dialpad-icon",
   },
   {
+    name: "dino icon",
+    path: "/icons/dino-icon",
+  },
+  {
     name: "discord icon",
     path: "/icons/discord-icon",
   },

@@ -86,6 +86,7 @@ import CurrencyEuroIcon from "./currency-euro-icon";
 import CurrencyRupeeIcon from "./currency-rupee-icon";
 import DeviceAirpodsIcon from "./device-airpods-icon";
 import DialpadIcon from "./dialpad-icon";
+import DinoIcon from "./dino-icon";
 import DoubleCheckIcon from "./double-check-icon";
 import DownloadIcon from "./download-icon";
 import DotsHorizontalIcon from "./dots-horizontal-icon";
@@ -723,6 +724,11 @@ const ICON_LIST: IconType[] = [
     name: "dialpad-icon",
     icon: DialpadIcon,
     keywords: ["dialpad", "phone", "keypad", "numbers", "call", "dial"],
+  },
+  {
+    name: "dino-icon",
+    icon: DinoIcon,
+    keywords: ["dino", "chrome", "pixel", "game", "animal", "offline"],
   },
   {
     name: "copy-icon",

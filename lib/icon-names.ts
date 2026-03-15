@@ -49,6 +49,7 @@ export const ICON_NAMES = [
   "credit-card",
   "copy-icon",
   "copy-off-icon",
+  "dino-icon",
   "discord-icon",
   "docker-icon",
   "double-check-icon",
