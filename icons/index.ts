@@ -38,6 +38,7 @@ import BluetoothConnectedIcon from "./bluetooth-connected-icon";
 import BookIcon from "./book-icon";
 import BookmarkIcon from "./bookmark-icon";
 import BugIcon from "./bug-icon";
+import BrandChromeIcon from "./brand-chrome-icon";
 import BrandGoogleIcon from "./brand-google-icon";
 import BrandNextjsIcon from "./brand-nextjs-icon";
 import BrandStripeIcon from "./brand-stripe-icon";
@@ -492,6 +493,11 @@ const ICON_LIST: IconType[] = [
     name: "bookmark-icon",
     icon: BookmarkIcon,
     keywords: ["bookmark", "save", "favorite", "mark"],
+  },
+  {
+    name: "brand-chrome-icon",
+    icon: BrandChromeIcon,
+    keywords: ["chrome", "browser", "google", "web", "internet", "brand"],
   },
   {
     name: "brand-google-icon",
