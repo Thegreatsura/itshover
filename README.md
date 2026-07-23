@@ -1,5 +1,4 @@
 # Its Hover
-CA: 0xAF257edDe898125FAD50016274455Bb6A3a8668A
 <a href="https://vercel.com/oss">
   <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge.svg" />
 </a>
