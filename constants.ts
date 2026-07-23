@@ -1,5 +1,5 @@
 export const TOKEN = {
-  CA: "0xAF257edDe898125FAD50016274455Bb6A3a8668A",
+  CA: "",
 } as const;
 
 export const LINKS = {
